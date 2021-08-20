@@ -8,7 +8,7 @@
 
 
 loadPackage "Schubert2" 
-n=10; 
+n=3; 
 P1 = abstractProjectiveSpace'(1, VariableName => h1);
 R1 = intersectionRing P1;
 c1= chern tangentBundle P1; 

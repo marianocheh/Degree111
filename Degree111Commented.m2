@@ -64,7 +64,8 @@ for i from 0 to n do (B1=B1+h1*h3^i*h4^(n-i));
 B2=sub(0,RX); %Class [B2] of B2 inside the Chow ring of X.
 for i from 0 to n do (B2=B2+h1*h2^i*h4^(n-i)); 
 B3=sub(0,RX); %Class [B3] of B3 inside the Chow ring of X.
-for i from 0 to n do (B3=B3+h1*h2^i*h3^(n-i)); cTZ1=sub(c1,RX)*sub(c1n,RX)*sub(c2n,RX); %Chern class of tangent space of Z1.
+for i from 0 to n do (B3=B3+h1*h2^i*h3^(n-i)); 
+cTZ1=sub(c1,RX)*sub(c1n,RX)*sub(c2n,RX); %Chern class of tangent space of Z1.
 cTZ2=sub(c1,RX)*sub(c1n,RX)*sub(c2n,RX); %Chern class of tangent space of Z2.
 cTZ3=sub(c1,RX)*sub(c1n,RX)*sub(c3n,RX); %Chern class of tangent space of Z3.
 sNZ1X=sTX*cTZ1; %Segre class of the normal bundle N_{Z1/X}.
@@ -107,13 +108,19 @@ F23= part(n+1,cNB0'rX' * e2 * sNE''X'' * h1 * sNB3'B0'rB3');
 B1tt = B1t-F21; %Class [\tilde{\tilde{B1}}] of \tilde{\tilde{B1}} inside the Chow ring of X''.
 B2tt = B2t-F22; %Class [\tilde{\tilde{B2}}] of \tilde{\tilde{B2}} inside the Chow ring of X''.
 B3tt = B3t-F23; %Class [\tilde{\tilde{B3}}] of \tilde{\tilde{B3}} inside the Chow ring of X''.
-ResTot=1/6*(h1+h2+h3+h4-e1-e2)^(3*n+1); for j from (n+1) to (3*n+1) do (ResTot = ResTot - 1/6 * binomial(3*n+1,j) * part(j-n-1,sNB1''X'') * B1tt * (h1+h2+h3+h4-e1-e2)^(3*n+1-j)- 1/6 * binomial(3*n+1,j) * part(j-n-1,sNB2''X'') * B2tt * (h1+h2+h3+h4-e1-e2)^(3*n+1-j)- 1/6 *binomial(3*n+1,j) * part(j-n-1,sNB3''X'') * B3tt * (h1+h2+h3+h4-e1-e2)^(3*n+1-j)); %ResTot is the push forward by the last blow-up projection of the pullback of the hyperplane class. It is a class in the Chow ring of X''. 
+ResTot=1/6*(h1+h2+h3+h4-e1-e2)^(3*n+1); 
+for j from (n+1) to (3*n+1) do (ResTot = ResTot - 1/6 * binomial(3*n+1,j) * part(j-n-1,sNB1''X'') * B1tt * (h1+h2+h3+h4-e1-e2)^(3*n+1-j)- 1/6 * binomial(3*n+1,j) * part(j-n-1,sNB2''X'') * B2tt * (h1+h2+h3+h4-e1-e2)^(3*n+1-j)- 1/6 *binomial(3*n+1,j) * part(j-n-1,sNB3''X'') * B3tt * (h1+h2+h3+h4-e1-e2)^(3*n+1-j)); %ResTot is the push forward by the last blow-up projection of the pullback of the hyperplane class. It is a class in the Chow ring of X''. 
 
-ResAux=sub(part(0,sub(ResTot,QQ[h1,h2,h3,h4,e1,e2,Degrees=>{0,0,0,0,0,1}])),RX); P=(3*n+2):sub(0,RX); for j from 0 to 3*n+1 do (P=replace(j,sub(sub(part(j,sub(ResTot,QQ[h1,h2,h3,h4,e1,e2,Degrees=>{0,0,0,0,0,1}])),RX),{sub(e2,RX)=>sub(1,RX)}),P)); for j from (n+1) to (3*n+1) do (ResAux = ResAux+P_j*(-1)^(j-1)*part(j-n-1,sNB0'rX')*B0'r); %ResAux displays the push forward by the second blow-up of ResTot. It is a class in the Chow ring of X'.
+ResAux=sub(part(0,sub(ResTot,QQ[h1,h2,h3,h4,e1,e2,Degrees=>{0,0,0,0,0,1}])),RX);
+P=(3*n+2):sub(0,RX); 
+for j from 0 to 3*n+1 do (P=replace(j,sub(sub(part(j,sub(ResTot,QQ[h1,h2,h3,h4,e1,e2,Degrees=>{0,0,0,0,0,1}])),RX),{sub(e2,RX)=>sub(1,RX)}),P)); 
+for j from (n+1) to (3*n+1) do (ResAux = ResAux+P_j*(-1)^(j-1)*part(j-n-1,sNB0'rX')*B0'r); %ResAux displays the push forward by the second blow-up of ResTot. It is a class in the Chow ring of X'.
 
-ResFin=sub(part(0,sub(ResAux,QQ[h1,h2,h3,h4,e1,Degrees=>{0,0,0,0,1}])),RX); Q=(3*n+2):sub(0,RX); %List of polynomials multiplying e1^j for every j.
+ResFin=sub(part(0,sub(ResAux,QQ[h1,h2,h3,h4,e1,Degrees=>{0,0,0,0,1}])),RX); 
+Q=(3*n+2):sub(0,RX); %List of polynomials multiplying e1^j for every j.
 
-for j from 0 to 3*n+1 do (Q=replace(j,sub(sub(part(j,sub(ResAux,QQ[h1,h2,h3,h4,e1,Degrees=>{0,0,0,0,1}])),RX),{sub(e1,RX)=>sub(1,RX)}),Q)); for j from (2*n) to (3*n+1) do (ResFin= ResFin+Q_j*(-1)^(j-1)*part(j-2*n,sNB0rX)*B0r); %ResFin displays the push forward by the first blow-up of ResAux. It is a class in the Chow ring of X of degree 3*n+1; it is the class of a point times the sought out degree.
+for j from 0 to 3*n+1 do (Q=replace(j,sub(sub(part(j,sub(ResAux,QQ[h1,h2,h3,h4,e1,Degrees=>{0,0,0,0,1}])),RX),{sub(e1,RX)=>sub(1,RX)}),Q)); 
+for j from (2*n) to (3*n+1) do (ResFin= ResFin+Q_j*(-1)^(j-1)*part(j-2*n,sNB0rX)*B0r); %ResFin displays the push forward by the first blow-up of ResAux. It is a class in the Chow ring of X of degree 3*n+1. It is the class of a point times the sought out degree.
 
 ResFin %This displays the result.
 

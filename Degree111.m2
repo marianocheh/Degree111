@@ -1,12 +1,3 @@
-
-
-
-	
-	
-	
-	
-
-
 loadPackage "Schubert2" 
 n=3; 
 P1 = abstractProjectiveSpace'(1, VariableName => h1);

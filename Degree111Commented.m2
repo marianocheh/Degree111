@@ -1,17 +1,18 @@
-
-
-
-	
-	
-	
 %This program computes the degree of the logarithmic component of type (1,1,1) in the space of codimension 1 foliations in projective space of dimension n (by changing the definition of n in the second line of the code). Written in Macaulay2.
 
-loadPackage "Schubert2" %We use the package Schubert 2 for displaying intersection rings.
-n=3; %Dimension of ambient projective space.
-P1 = abstractProjectiveSpace'(1, VariableName => h1); %Projective space representing residues.
+%We use the package Schubert 2 for displaying intersection rings.
+loadPackage "Schubert2" 
+
+%Dimension of ambient projective space.
+n=3;
+
+%Projective space representing residues.
+P1 = abstractProjectiveSpace'(1, VariableName => h1); 
 R1 = intersectionRing P1;
 c1= chern tangentBundle P1; 
 s1 = segre dual(tangentBundle P1); 
+
+
 P1n= abstractProjectiveSpace'(n, VariableName => h2); %Projective space representing polynomial.
 R1n = intersectionRing P1n; 
 c1n = chern tangentBundle P1n; 
